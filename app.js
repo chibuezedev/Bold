@@ -1,50 +1,56 @@
-'use strict'
-
-//default packages
-const express = require("express")
 const path = require('path');
-const bodyParser = require('body-parser');
 
-// third-party packages
+const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
-const multer  = require('multer')
+const multer = require('multer');
 
-//environment variables
-const MONGODB_LOG =  process.env.MONGODB_LOG
-const MONGODB_URI = process.env.MONGODB_URI
-const SECRET = process.env.SECRET
-const PORT = process.env.PORT || 3000
-
-//models and middlewares
 const errorController = require('./controllers/error');
-const accountController = require('./controllers/account');
-const { fileFilter, fileStorage } = require('./middleware/multer')
+const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
-// defined routes
-const userRoutes = require('./routes/user');
-const accountRoutes = require('./routes/account');
-const authRoutes = require('./routes/user');
+const MONGODB_URI =
+  'mongodb+srv://Paul:y9DSqyzD8uiQ9n8g@node-class.iz8y6zp.mongodb.net/bold';
 
-const app = express()
-
-
+const app = express();
 const store = new MongoDBStore({
-    uri: MONGODB_LOG,
-    collection: 'sessions'
-  });
-
-
+  uri: MONGODB_URI,
+  collection: 'sessions'
+});
 const csrfProtection = csrf();
+
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + '-' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
@@ -54,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(
   session({
-    secret: SECRET,
+    secret: 'my secret',
     resave: false,
     saveUninitialized: false,
     store: store
@@ -86,7 +92,7 @@ app.use((req, res, next) => {
     });
 });
 
-app.post('/create-order', isAuth, accountController.postOrder);
+app.post('/create-order', isAuth, shopController.postOrder);
 
 app.use(csrfProtection);
 app.use((req, res, next) => {
@@ -94,30 +100,30 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/user', userRoutes);
-app.use('/account', accountRoutes);
-app.use('/auth', authRoutes);
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.use(authRoutes);
 
 app.get('/500', errorController.get500);
 
 app.use(errorController.get404);
 
-app.use((error, req, res, next) => {
-  res.status(500).render('500', {
-    pageTitle: 'Error!',
-    path: '/500',
-    isAuthenticated: req.session.isLoggedIn
-  });
-});
+// app.use((error, req, res, next) => {
+//   // res.status(error.httpStatusCode).render(...);
+//   // res.redirect('/500');
+//   res.status(500).render('500', {
+//     pageTitle: 'Error!',
+//     path: '/500',
+//     isAuthenticated: req.session.isLoggedIn
+//   });
+// });
 
-
-mongoose.connect(MONGODB_URI)
+mongoose
+  .connect(MONGODB_URI)
   .then(result => {
-    app.listen(PORT, () => console.log("Listening on port", PORT))
-  }).catch(err => {
+    app.listen(3000);
+    console.log("Connected")
+  })
+  .catch(err => {
     console.log(err);
   });
-
-
-
-
