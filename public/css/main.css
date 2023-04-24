@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -38,6 +40,7 @@ form {
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .main-header__nav {
@@ -46,6 +49,7 @@ form {
   display: none;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .main-header__item-list {
@@ -53,11 +57,15 @@ form {
   margin: 0;
   padding: 0;
   display: flex;
+  position: relative;
+  align-items: center;
+  left: 0.5rem;
 }
 
 .main-header__item {
   margin: 0 1rem;
   padding: 0;
+  list-style: none;
 }
 
 .main-header__item a,
@@ -68,6 +76,7 @@ form {
   text-decoration: none;
   color: white;
   cursor: pointer;
+  list-style: none;
 }
 
 .main-header__item a:hover,
