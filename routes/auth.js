@@ -6,12 +6,14 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-router.get('/login', authController.getLogin);
+router.get('/signup', authController.getLogin);
 
 router.get('/signup', authController.getSignup);
 
+
+//login route
 router.post(
-  '/login',
+  '/signup',
   [
     body('email')
       .isEmail()
@@ -25,6 +27,7 @@ router.post(
   authController.postLogin
 );
 
+//signup route
 router.post(
   '/signup',
   [
@@ -32,10 +35,6 @@ router.post(
       .isEmail()
       .withMessage('Please enter a valid email.')
       .custom((value, { req }) => {
-        // if (value === 'test@test.com') {
-        //   throw new Error('This email address if forbidden.');
-        // }
-        // return true;
         return User.findOne({ email: value }).then(userDoc => {
           if (userDoc) {
             return Promise.reject(
@@ -65,6 +64,8 @@ router.post(
 );
 
 router.post('/logout', authController.postLogout);
+
+router.get('/payments', authController.getPayments);
 
 router.get('/reset', authController.getReset);
 

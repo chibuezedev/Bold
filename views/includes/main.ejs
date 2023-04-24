@@ -43,20 +43,24 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link <%= path === '/' ? 'active' : '' %>" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
+                <% if (!isAuthenticated) { %>
                 <li class="nav-item ">
-                  <a class="nav-link" href="about.html"> About </a>
+                  <a class="nav-link <%= path === '/receive' ? 'active' : '' %>" href="/receive">Services</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="how.html"> How </a>
+                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/payments">About Us</a>
+                  </li>
+                <% } %>
+                <% if (isAuthenticated) { %>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/payments">Money Transfer</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <span>Wallet</span> <img src="images/wallet.png" alt="" />
                   </a>
                 </li>
+                <% } %>
                 <% if (!isAuthenticated) { %>
                 <li class="nav-item">
                   <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/signup"> Login</a>
@@ -65,11 +69,10 @@
                   <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/signup"> Sign Up</a>
                 </li>
                 <% } else { %>
-                    <li class="main-header__item">
-                    <i class="fa-solid fa-user"></i>
-                        <form action="/logout" method="post">
+                    <li class="nav-item" >
+                        <form action="/logout" method="post" id="the_form">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button type="submit">Logout</button>
+                            <a class="nav-link " href="javascript:{}" onclick="document.getElementById('the_form').submit(); return false;"> Logout</a>
                         </form>
                     </li>
                 <% } %>
@@ -104,10 +107,10 @@
                     <div class="detail-box">
                       <div>
                         <h1>
-                          Digital Currency
+                        99.9% Sleemless Payment Success
                         </h1>
-                        <h2>
-                          The Future of Trading.
+                        <h2 >
+                          With Bold.
                         </h2>
                         <div class="">
                           <a href="">
@@ -134,10 +137,10 @@
                     <div class="detail-box">
                       <div>
                         <h1>
-                          Digital Currency
+                        99.9% Sleemless Crypto Payment
                         </h1>
                         <h2>
-                          The Future of Trading.
+                          With Bold
                         </h2>
                         <div class="">
                           <a href="">
@@ -164,70 +167,10 @@
                     <div class="detail-box">
                       <div>
                         <h1>
-                          Digital Currency
+                          Enjoy One Time Payment
                         </h1>
                         <h2>
-                          The Future of Trading.
-                        </h2>
-                        <div class="">
-                          <a href="">
-                            Get Started
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="img-box">
-                      <img src="images/slider-img.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <div class="box">
-                <div class="row">
-                  <div class="col-md-7">
-                    <div class="detail-box">
-                      <div>
-                        <h1>
-                          Digital Currency
-                        </h1>
-                        <h2>
-                          The Future of Trading.
-                        </h2>
-                        <div class="">
-                          <a href="">
-                            Get Started
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="img-box">
-                      <img src="images/slider-img.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <div class="box">
-                <div class="row">
-                  <div class="col-md-7">
-                    <div class="detail-box">
-                      <div>
-                        <h1>
-                          Digital Currency
-                        </h1>
-                        <h2>
-                          The Future of Trading.
+                          With Bold.
                         </h2>
                         <div class="">
                           <a href="">
@@ -561,7 +504,7 @@
                 <img src="images/location.png" width="18px" alt="" />
               </div>
               <p>
-                Page when looking at its layou
+                Lagos, Nigeria
               </p>
             </div>
             <div>
@@ -569,7 +512,7 @@
                 <img src="images/phone.png" width="18px" alt="" />
               </div>
               <p>
-                +01 1234567890
+                +234 8022723132
               </p>
             </div>
             <div>
@@ -577,7 +520,7 @@
                 <img src="images/envelope.png" width="18px" alt="" />
               </div>
               <p>
-                demo@gmail.com
+                bold@gmail.com
               </p>
             </div>
           </div>
@@ -659,9 +602,12 @@
 
   <!-- footer section -->
   <section class="container-fluid footer_section">
-    <p>
-      &copy; 2019 All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
+    <p> 
+      &copy;
+      <span id="copyright">
+          <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+      </span>
+       Bold Team
     </p>
   </section>
   <!-- footer section -->

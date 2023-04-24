@@ -12,6 +12,7 @@
         <% } %>
         <form class="login-form" action="/signup" method="POST" novalidate>
             <div class="form-control">
+
                 <label for="email">E-Mail</label>
                 <input 
                     class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
@@ -21,6 +22,7 @@
                     value="<%= oldInput.email %>">
             </div>
             <div class="form-control">
+
                 <label for="password">Password</label>
                 <input 
                     class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
@@ -30,6 +32,8 @@
                     value="<%= oldInput.password %>">
             </div>
             <div class="form-control">
+
+                
                 <label for="confirmPassword">Confirm Password</label>
                 <input 
                     class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
