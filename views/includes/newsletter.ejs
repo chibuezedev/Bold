@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   </head>
     <style>
-      body {
+      main {
         text-align: center;
         padding: 40px 0;
         background: #EBF0F5;
@@ -37,12 +37,15 @@
       }
     </style>
     <body>
+      <%- include('../includes/navitems.ejs') %>
+      <main>
       <div class="card">
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
       </div>
         <h1>Success</h1> 
-        <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+        <p>We received your subscription request;<br/> we'll be in touch shortly!</p>
       </div>
+    </main>
     </body>
 </html>

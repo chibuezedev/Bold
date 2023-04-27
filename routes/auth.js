@@ -73,12 +73,7 @@ router.get('/card-item', authController.getCardItem);
 
 router.post('/newsletter', authController.postNewsletter);
 
-router.get('/reset', authController.getReset);
+router.get('/about', authController.getAboutus);
 
-router.post('/reset', authController.postReset);
-
-router.get('/reset/:token', authController.getNewPassword);
-
-router.post('/new-password', authController.postNewPassword);
 
 module.exports = router;

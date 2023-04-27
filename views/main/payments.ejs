@@ -75,6 +75,9 @@
                   <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/signup"> Sign Up</a>
                 </li>
                 <% } else { %>
+                  <li class="nav-item">
+                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/about">About Us</a>
+                  </li>
                     <li class="nav-item" >
                         <form action="/logout" method="post" id="the_form">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -166,7 +169,7 @@
           </p>
           <!-- https://paypal-checkout.onrender.com/paypal -->
           <div class="btn-box">
-            <a href="paypal-item">
+            <a href="/paypal-item">
               Pay With Paypal
             </a>
           </div>

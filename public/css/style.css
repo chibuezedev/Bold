@@ -460,6 +460,7 @@ section.app_section {
   color: #ffffff;
   background: -webkit-gradient(linear, left top, right top, from(#30ae69), to(#072e85));
   background: linear-gradient(to right, #30ae69, #072e85);
+  margin-bottom: 30px;
 }
 
 section.app_section .row {

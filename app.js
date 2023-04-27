@@ -1,3 +1,5 @@
+'use strict'
+
 const path = require('path');
 require('dotenv').config()
 require('./util/database')
@@ -6,16 +8,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+
 const csrf = require('csurf');
 const flash = require('connect-flash');
 
 const errorController = require('./controllers/error');
-const shopController = require('./controllers/shop');
-const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
-// const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+
+const homeRoutes = require('./routes/home');
 const authRoutes = require('./routes/auth');
 
 
@@ -84,9 +85,7 @@ app.use((req, res, next) => {
 });
 
 
-// app.post('/create-order', isAuth, shopController.postOrder);
-// app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+app.use(homeRoutes);
 app.use(authRoutes);
 
 

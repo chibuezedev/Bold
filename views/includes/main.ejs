@@ -49,7 +49,7 @@
                   <a class="nav-link <%= path === '/receive' ? 'active' : '' %>" href="/receive">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/payments">About Us</a>
+                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/about">About Us</a>
                   </li>
                 <% } %>
                 <% if (isAuthenticated) { %>
@@ -70,12 +70,16 @@
                   <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/signup"> Sign Up</a>
                 </li>
                 <% } else { %>
+                  <li class="nav-item">
+                    <a class="nav-link <%= path === '/payments' ? 'active' : '' %>" href="/about">About Us</a>
+                  </li>
                     <li class="nav-item" >
                         <form action="/logout" method="post" id="the_form">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <a class="nav-link " href="javascript:{}" onclick="document.getElementById('the_form').submit(); return false;"> Logout</a>
                         </form>
                     </li>
+                    
                 <% } %>
               </ul>
               <div class="user_option">
@@ -222,8 +226,7 @@
             Credit Card
           </h5>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et
+              Payments are authorized by swiping, inserting or providing the card details online.
           </p>
         </div>
       </div>
@@ -242,8 +245,7 @@
             Wire transfer
           </h5>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et
+            Wire transfer is an electronic transfer of funds from one bank account to another. 
           </p>
         </div>
       </div>
@@ -277,8 +279,7 @@
             Shop with Crypto
           </h5>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et
+            Crypto, short for cryptocurrency, is a digital or virtual currency that uses cryptography for security and operates independently of a central bank. 
           </p>
         </div>
       </div>
@@ -302,8 +303,7 @@
             Digital wallets
           </h5>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et
+            A digital wallet is a software application that allows users to store and manage various forms of digital currency, such as cryptocurrencies or digital payment methods, in one place.
           </p>
         </div>
       </div>
@@ -324,15 +324,12 @@
         <div class="col-md-6">
           <div class="detail-box">
             <h2>
-              Our Powerful app to connect it all
+              Our Powerful app Coming Soon
             </h2>
             <p>
                Adapting and Innovating: Tracing the Evolutionary Path of Money
             </p>
             <div class="download_box">
-              <h5>
-                Coming Soon...
-              </h5>
               <div class="btn-box">
                 <a href="">
                   <img src="images/app-store.png" alt="">
@@ -354,38 +351,6 @@
   </section>
 
   <!-- end app section -->
-
-
-  <!-- auto section -->
-
-  <section class="auto_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Start Automatic Now
-        </h2>
-      </div>
-      <div class="box">
-        <div class="img-box">
-          <img src="images/auto-img.png" alt="">
-        </div>
-        <div class="detail-box">
-          <p>
-            Understanding the evolution of money is important because it provides insights into the way our economic systems and financial institutions have developed over time. By tracing the history of money, we can gain a deeper appreciation for the role it has played in shaping human societies and how it continues to impact our lives today.
-           
-          </p>
-          <div class="btn-box">
-            <a href="/signup">
-              Register Now
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end auto section -->
-
-  <!-- client section -->
 
   <section class="client_section layout_padding-bottom">
     <div class="container">
@@ -485,7 +450,7 @@
             </h5>
             <ul>
               <li>
-                <a href="">
+                <a href="/about">
                   About Us
                 </a>
               </li>
