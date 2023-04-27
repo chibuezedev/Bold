@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check');
 
 const User = require('../models/user');
+const Newsletter = require('../models/newsletter');
 
 
 
@@ -221,16 +222,34 @@ exports.getCardItem = (req, res, next) => {
 
 
 
+exports.postNewsletter = async (req, res, next) => {
+
+  const email = req.body.email;
 
 
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).render('/', {
+      path: '/',
+      errorMessage: errors.array()[0].msg,
+      oldInput: {
+        email: email,
+      },
+      validationErrors: errors.array()
+    });
+  }
+ await new Newsletter({
+  email: email,
+ })
 
+  res.render('includes/newsletter', {
+    path: '/newsletter',
+    pageTitle: 'Newsletter',
+    email: email,
+   }
+   )
 
-
-
-
-
-
-
+}
 
 
 exports.getReset = (req, res, next) => {

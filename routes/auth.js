@@ -71,6 +71,8 @@ router.get('/paypal-item', authController.getPaypalItem);
 
 router.get('/card-item', authController.getCardItem);
 
+router.post('/newsletter', authController.postNewsletter);
+
 router.get('/reset', authController.getReset);
 
 router.post('/reset', authController.postReset);

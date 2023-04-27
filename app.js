@@ -14,7 +14,7 @@ const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
-const adminRoutes = require('./routes/admin');
+// const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
@@ -84,8 +84,8 @@ app.use((req, res, next) => {
 });
 
 
-app.post('/create-order', isAuth, shopController.postOrder);
-app.use('/admin', adminRoutes);
+// app.post('/create-order', isAuth, shopController.postOrder);
+// app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
 
@@ -96,5 +96,5 @@ app.use(errorController.get404);
 
 
 
-app.listen(PORT, function() { console.log(`Listening on port ${PORT}`);});
+app.listen(PORT, function() { console.log(`Listening on port  http://localhost:${PORT}`);});
 
