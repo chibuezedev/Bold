@@ -67,6 +67,10 @@ router.post('/logout', authController.postLogout);
 
 router.get('/payments', authController.getPayments);
 
+router.get('/paypal-item', authController.getPaypalItem);
+
+router.get('/card-item', authController.getCardItem);
+
 router.get('/reset', authController.getReset);
 
 router.post('/reset', authController.postReset);

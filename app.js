@@ -9,7 +9,6 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 
-
 const errorController = require('./controllers/error');
 const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
@@ -19,10 +18,10 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
+
 const MONGODB_LOG = process.env.MONGODB_LOG
 const JWT_SECRET = process.env.JWT_SECRET
 const PORT = process.env.PORT
-
 
 const app = express();
 const csrfProtection = csrf();
@@ -38,6 +37,22 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 app.use(flash());
+
+
+const store = new MongoDBStore({
+  uri: MONGODB_LOG,
+  collection: 'sessions'
+});
+
+app.use(
+  session({
+    secret: JWT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
+
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
@@ -68,28 +83,17 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.post('/create-order', isAuth, shopController.postOrder);
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
 
+
 app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
 
-const store = new MongoDBStore({
-  uri: MONGODB_LOG,
-  collection: 'sessions'
-});
-
-app.use(
-  session({
-    secret: JWT_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store
-  })
-);
 
 
 app.listen(PORT, function() { console.log(`Listening on port ${PORT}`);});

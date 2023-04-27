@@ -189,6 +189,35 @@ exports.getPayments = (req, res, next) => {
 };
 
 
+exports.getPaypalItem = (req, res, next) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('main/paypal-item', {
+    path: '/paypal-item',
+    pageTitle: 'Ape NFT',
+    errorMessage: message
+  });
+};
+
+
+exports.getCardItem = (req, res, next) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('main/card-item', {
+    path: '/card-item',
+    pageTitle: 'Ape NFT',
+    errorMessage: message
+  });
+};
+
 
 
 
