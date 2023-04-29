@@ -8,8 +8,9 @@
  <meta name="description" content="" />
  <meta name="author" content="" />
 
- <!-- <title>Solomon</title> -->
-
+ <title>Solomon </title>
+ <link rel="shortcut icon" href="/images/finance.png">
+ <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
  <!-- slider stylesheet -->
  <!-- slider stylesheet -->
@@ -96,13 +97,6 @@
     <!-- slider section -->
     <section class=" slider_section position-relative">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-        </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container">
@@ -112,22 +106,29 @@
                     <div class="detail-box">
                       <div>
                         <h1>
-                        99.9% Sleemless Payment Success
+                        99.9% Seamless Payment Success
                         </h1>
                         <h2 >
                           With Solomon.
                         </h2>
                         <div class="">
-                          <a href="">
+                          <% if (!isAuthenticated) { %>
+                          <a href="/signup">
                             Get Started
                           </a>
+                          <% } %>
+                          <% if (isAuthenticated) { %>
+                            <a href="/payments">
+                              Money Transfer
+                            </a>
+                            <% } %>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="" />
+                      <img src="images/01. ATM Machine.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -142,22 +143,29 @@
                     <div class="detail-box">
                       <div>
                         <h1>
-                        99.9% Sleemless Crypto Payment
+                        99.9% Faultless Crypto Payment
                         </h1>
                         <h2>
                           With Solomon
                         </h2>
                         <div class="">
-                          <a href="">
-                            Get Started
-                          </a>
+                          <% if (!isAuthenticated) { %>
+                            <a href="/signup">
+                              Get Started
+                            </a>
+                            <% } %>
+                            <% if (isAuthenticated) { %>
+                              <a href="/payments">
+                                Trade Your Crypto
+                              </a>
+                              <% } %>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="" />
+                      <img src="images/finance.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -178,16 +186,23 @@
                           With Solomon.
                         </h2>
                         <div class="">
-                          <a href="">
-                            Get Started
-                          </a>
+                          <% if (!isAuthenticated) { %>
+                            <a href="/signup">
+                              Get Started
+                            </a>
+                            <% } %>
+                            <% if (isAuthenticated) { %>
+                              <a href="/payments">
+                                Let's Trade
+                              </a>
+                              <% } %>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="" />
+                      <img src="images/stock.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -208,7 +223,7 @@
       </h2>
     </div>
     <div class="how_container">
-      <div class="box">
+      <div class="box" data-aos="zoom-in">
         <div class="img-box">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
             x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"
@@ -230,7 +245,7 @@
           </p>
         </div>
       </div>
-      <div class="box">
+      <div class="box" data-aos="zoom-in">
         <div class="img-box">
           <svg id="Capa_1" enable-background="new 0 0 510 510" height="512" viewBox="0 0 510 510" width="512"
             xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +264,7 @@
           </p>
         </div>
       </div>
-      <div class="box">
+      <div class="box" data-aos="zoom-in">
         <div class="img-box">
           <svg height="480pt" viewBox="0 -40 480 479" width="480pt" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -283,7 +298,7 @@
           </p>
         </div>
       </div>
-      <div class="box">
+      <div class="box" data-aos="zoom-in">
         <div class="img-box">
           <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -331,10 +346,10 @@
             </p>
             <div class="download_box">
               <div class="btn-box">
-                <a href="">
+                <a href="/coming">
                   <img src="images/app-store.png" alt="">
                 </a>
-                <a href="">
+                <a href="/coming">
                   <img src="images/play-store.png" alt="">
                 </a>
               </div>
@@ -359,7 +374,7 @@
           Memoir of Solomon
         </h2>
       </div>
-      <div class="box">
+      <div class="box" data-aos="zoom-in-up" data-aos-offset="200" data-aos-delay="100">
         <div class="client_id">
           <div class="img-box">
             <img src="images/client-2.jpg" alt="">
@@ -511,7 +526,10 @@
     </p>
   </section>
   <!-- footer section -->
-
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">

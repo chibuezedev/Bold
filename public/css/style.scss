@@ -80,7 +80,9 @@ body {
 
 /*header section*/
 .hero_area {
-  background-image: url(../images/hero-bg.jpg);
+  color: #ffffff;
+  background: -webkit-gradient(linear, left top, right top, from(#30ae69), to(#072e85));
+  background: linear-gradient(to right, #30ae69, #072e85);
   background-size: cover;
 }
 

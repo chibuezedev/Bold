@@ -75,5 +75,7 @@ router.post('/newsletter', authController.postNewsletter);
 
 router.get('/about', authController.getAboutus);
 
+router.get('/coming', authController.getComing);
+
 
 module.exports = router;

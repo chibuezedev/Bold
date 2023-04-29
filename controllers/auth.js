@@ -266,3 +266,19 @@ exports.getAboutus = (req, res, next) => {
     errorMessage: message
   });
 };
+
+
+
+exports.getComing = (req, res, next) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('main/coming', {
+    path: '/coming',
+    pageTitle: 'Coming Soon',
+    errorMessage: message
+  });
+};

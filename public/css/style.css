@@ -59,7 +59,9 @@ body {
 
 /*header section*/
 .hero_area {
-  background-image: url(../images/hero-bg.jpg);
+  color: #ffffff;
+  background: -webkit-gradient(linear, left top, right top, from(#30ae69), to(#072e85));
+  background: linear-gradient(to right, #30ae69, #072e85);
   background-size: cover;
 }
 
@@ -211,6 +213,7 @@ a:focus {
 
 .slider_section #carouselExampleIndicators {
   width: 100%;
+  margin-bottom: 40px
 }
 
 .slider_section .row {
@@ -259,7 +262,7 @@ a:focus {
 }
 
 .slider_section .img-box img {
-  width: 100%;
+  width: 120%;
 }
 
 .slider_section #carouselExampleIndicators .carousel-indicators {
