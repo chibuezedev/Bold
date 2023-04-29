@@ -22,7 +22,7 @@ const authRoutes = require('./routes/auth');
 
 const MONGODB_LOG = process.env.MONGODB_LOG
 const JWT_SECRET = process.env.JWT_SECRET
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 const app = express();
 const csrfProtection = csrf();
