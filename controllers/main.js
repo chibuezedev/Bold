@@ -31,9 +31,7 @@ exports.getSignup = (req, res, next) => {
   });
 };
 
-
-
-
+//signup handler
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -44,7 +42,6 @@ exports.postSignup = (req, res, next) => {
     console.log(errors.array());
     return res.status(422).render('auth/signup', {
       path: '/signup',
-      pageTitle: 'Signup',
       errorMessage: errors.array()[0].msg,
       oldInput: {
         username: username,
@@ -68,12 +65,6 @@ exports.postSignup = (req, res, next) => {
     })
     .then(result => {
       res.redirect('/');
-      // return transporter.sendMail({
-      //   to: email,
-      //   from: 'Welcome to Bold',
-      //   subject: 'Signup succeeded!',
-      //   html: '<h1>You successfully signed up!</h1>'
-      // });
     })
     .catch(err => {
       const error = new Error(err);
@@ -91,7 +82,7 @@ exports.getLogin = (req, res, next) => {
     message = null;
   }
   res.render('auth/signup', {
-    path: '/login',
+    path: '/signup',
     pageTitle: 'Login',
     errorMessage: message,
     oldInput: {
@@ -102,6 +93,7 @@ exports.getLogin = (req, res, next) => {
   });
 };
 
+//user login controller
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -168,6 +160,7 @@ exports.postLogin = (req, res, next) => {
     });
 };
 
+//user logout
 exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
     console.log(err);
@@ -228,24 +221,19 @@ exports.postNewsletter = async (req, res, next) => {
 
 
   const errors = validationResult(req);
+
   if (!errors.isEmpty()) {
     return res.status(422).render('/', {
       path: '/',
       errorMessage: errors.array()[0].msg,
-      oldInput: {
-        email: email,
-      },
+      email: email,
       validationErrors: errors.array()
     });
   }
- await new Newsletter({
-  email: email,
- })
+     await new Newsletter({email: email})
 
-  res.render('includes/newsletter', {
+     res.render('includes/newsletter', {
     path: '/newsletter',
-    pageTitle: 'Newsletter',
-    email: email,
    }
    )
 

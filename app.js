@@ -4,6 +4,7 @@ const path = require('path');
 require('dotenv').config()
 require('./util/database')
 
+// Third-party libraries
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -12,14 +13,15 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 
+//User & Error middleware
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-
+//custom routes
 const homeRoutes = require('./routes/home');
 const authRoutes = require('./routes/auth');
 
-
+// Environment variables
 const MONGODB_LOG = process.env.MONGODB_LOG
 const JWT_SECRET = process.env.JWT_SECRET
 const PORT = process.env.PORT || 3000
@@ -27,7 +29,7 @@ const PORT = process.env.PORT || 3000
 const app = express();
 const csrfProtection = csrf();
 
-
+// Template Engine
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -39,7 +41,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use(flash());
 
-
+//Session middleware
 const store = new MongoDBStore({
   uri: MONGODB_LOG,
   collection: 'sessions'
@@ -84,11 +86,11 @@ app.use((req, res, next) => {
   next();
 });
 
-
+// custom routes
 app.use(homeRoutes);
 app.use(authRoutes);
 
-
+// Route mismatch middleware
 app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
