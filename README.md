@@ -7,7 +7,6 @@ Bold is a robust and secure payment processing solution that enables businesses 
 
 In today's digital age, the ability to securely process payments online is crucial for businesses of all sizes. The Standard Payment Gateway offers a comprehensive and reliable solution to handle online transactions, ensuring a seamless experience for both merchants and customers.
 
-This README provides an overview of the Standard Payment Gateway and delves into the fascinating journey of the evolution of money.
 
 ## Evolution of Money
 
@@ -41,6 +40,9 @@ The evolution of money continues to evolve with the advancements in technology, 
 - Multi-currency support for international transactions
 - Detailed reporting and analytics
 
+Paystack API: [https://github.com/chibuezedev/paystack]
+
+Paypal API: [https://github.com/chibuezedev/paypal]
 
 
 This project is licensed under the [MIT License](./LICENSE). Feel free to use, modify, and distribute this codebase as per the license terms.
