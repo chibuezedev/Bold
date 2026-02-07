@@ -95,7 +95,7 @@ exports.getLogin = (req, res, next) => {
 
 //user login controller
 exports.postLogin = (req, res, next) => {
-  const email = req.body.email;
+  const email = typeof req.body.email === 'string' ? req.body.email : '';
   const password = req.body.password;
 
   const errors = validationResult(req);
@@ -112,7 +112,7 @@ exports.postLogin = (req, res, next) => {
     });
   }
 
-  User.findOne({ email: email })
+  User.findOne({ email: { $eq: email } })
     .then(user => {
       if (!user) {
         return res.status(422).render('auth/signup', {
