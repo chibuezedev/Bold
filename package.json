@@ -11,24 +11,38 @@
   "author": "solomon",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "nodemon": "^3.1.9"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.3",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.0.3",
     "csurf": "^1.9.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.10",
-    "express": "^4.16.3",
-    "express-session": "^1.15.6",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
     "express-validator": "^7.3.1",
     "mongoose": "^6.13.6",
     "node-fetch": "^2.6.9",
-    "nodemailer": "^4.6.8"
+    "nodemailer": "^6.10.1"
   },
   "engines": {
     "node": ">=14"
+  },
+  "overrides": {
+    "qs": "^6.14.1",
+    "lodash": "^4.17.23",
+    "fast-xml-parser": "^5.3.6",
+    "cookie": "^0.7.0",
+    "on-headers": "^1.1.0",
+    "path-to-regexp": "^0.1.10",
+    "send": "^0.19.0",
+    "serve-static": "^1.16.0",
+    "braces": "^3.0.3",
+    "got": "^11.8.5",
+    "mpath": "^0.8.4",
+    "lodash.set": "npm:@lodash/set@^4.3.3"
   }
 }
